@@ -4,8 +4,18 @@ const btnGray = document.createElement('button');
 const btnRainbow = document.createElement('button');
 // const btnRGB = document.createElement('button');
 const btnSize = document.createElement('button');
-// const section = document.querySelector('.section')
+const eraser = document.createElement('button');
+const section = document.querySelector('.section');
 const buttonsContainer = document.querySelector('.buttons');
+
+window.onload = () => {
+    const boxs = container.querySelectorAll('.box');
+    boxs.forEach(box => box.addEventListener('mouseover', () => {
+        let Rnum = Math.floor(Math.random() * 255);
+        box.style.background = `rgb(${Rnum},${Rnum},${Rnum})`;
+        // box.style.background = 'black';
+    }))
+};
 
 
 function createDivs(col , rows){
@@ -29,7 +39,7 @@ function grayColor() {
             box.style.background = `rgb(${Rnum},${Rnum},${Rnum})`;
         }))
     })
-    buttonsContainer.appendChild(btnGray).classList.add('.btn');
+    buttonsContainer.appendChild(btnGray).classList.add('btn');
 }
 
 
@@ -41,7 +51,7 @@ function blackColor() {
             box.style.background = 'black';
         }))
     })
-    buttonsContainer.appendChild(btnBlack).classList.add('.btn');
+    buttonsContainer.appendChild(btnBlack).classList.add('btn');
 }
 
 
@@ -56,9 +66,19 @@ function rainbowColor() {
             box.style.background = `rgb(${R},${G},${B})`;
         }))
     })
-    buttonsContainer.appendChild(btnRainbow).classList.add('.btn');
+    buttonsContainer.appendChild(btnRainbow).classList.add('btn');
 }
 
+const eraseColor = () => {
+    const boxs = container.querySelectorAll('.box');
+    eraser.textContent = 'Eraser';
+    eraser.addEventListener('click', () => {
+        boxs.forEach(box => box.addEventListener('mouseover', () => {
+            box.style.background =  '#FFFFD6';
+        }))
+    })
+    buttonsContainer.appendChild(eraser).classList.add('btn');
+}
 
 const reSet = () => {
     const boxs = container.querySelectorAll('.box')
@@ -75,6 +95,7 @@ function reSize() {
             rainbowColor()
             grayColor()
             blackColor()
+            eraseColor();
         } 
         else {
             reSet()
@@ -82,16 +103,35 @@ function reSize() {
             rainbowColor()
             grayColor()
             blackColor()
+            eraseColor();
         }
     })
-    buttonsContainer.appendChild(btnSize).classList.add('.btn');
+    buttonsContainer.appendChild(btnSize).classList.add('btn');
 }
 
 reSize()
 rainbowColor();
 grayColor();
 blackColor();
+eraseColor();
 
 function backgroundAnim () {
     colors = ['red', 'blue', 'yellow', 'green'];
+    const span = document.createElement('span');
+    let size = Math.random() * 50;
+    span.style.width = 10 + size + 'px';
+    span.style.height = 10 + size + 'px';
+
+    span.style.borderRadius = `${size}%`;
+    span.style.top = Math.random() * innerHeight + 'px';
+    span.style.left = Math.random() * innerWidth + 'px';
+
+    const backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    
+    span.style.background = backgroundColor;
+    section.appendChild(span);
+
+    setTimeout(() => {span.remove()}, 5000);
 }
+
+setInterval(backgroundAnim, 500);

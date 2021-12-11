@@ -1,3 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgba(22,27,34,1);
+    /* background-color: wheat; */
+    overflow: hidden;
+}
+
 .section {
     display: flex;
     justify-content: center;
@@ -15,9 +27,75 @@ section h1 {
     font-size: 4em;
 }
 
+.white-head {
+     color: ivory;
+     /* border: solid; */
+     border-bottom: solid;
+     margin-bottom: 20px;
+}
+
 .container {
     width: 600px;
     height: 600px;
     display: grid;
     z-index: 100;
+    background-color: rgb(255,255,220,1);
+    border-radius: 5px 5px 40px rgb(255, 255, 255), -5px -5px -40px, rgba(0,0,0,0.25);
+    margin-bottom: 3em;
+} 
+
+span {
+    position: absolute;
+    animation: animate 5s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(0) rotate(0) scale(0);
+    }
+    30% {
+        opacity: 1;
+        filter: hue-rotate(100deg);
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(400%) rotate(360deg) scale(1);
+        filter: hue-rotate(360);
+        opacity: 0;
+    }
+}
+
+.buttons {
+    width: 600px;
+    /* position: absolute; */
+    padding: 1em 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn{
+    padding: 0.7em 0.7em;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+    justify-content: space-around;
+    order: 1;
+    background: rgb(240,255,240);
+    box-shadow: 5px 5px 5px violet;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    z-index: 100;
+    letter-spacing: 1px;
+}
+
+.buttons button:last-child {
+    order: -1;
+}
+
+.btn:hover {
+    background: #006400;
+    color: wheat;
 }
